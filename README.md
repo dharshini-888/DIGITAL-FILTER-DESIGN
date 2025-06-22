@@ -1,1 +1,40 @@
 # DIGITAL-FILTER-DESIGN
+module fir_filter (
+  input clk,
+  input reset,
+  input [7:0] input_signal,
+  output reg [11:0] output_signal
+);
+
+  // Filter coefficients
+  parameter COEF_0 = 8'b10100000; // 0.5
+  parameter COEF_1 = 8'b01010000; // 0.25
+  parameter COEF_2 = 8'b00100000; // 0.125
+
+  // Delay registers for input samples
+  reg [7:0] delayed_input_1;
+  reg [7:0] delayed_input_2;
+
+  // Accumulator for summing products
+  reg [11:0] accumulator;
+
+  always @(posedge clk) begin
+    if (reset) begin
+      output_signal <= 0;
+      delayed_input_1 <= 0;
+      delayed_input_2 <= 0;
+      accumulator <= 0;
+    end else begin
+
+      // Delay the input signal
+      delayed_input_1 <= input_signal;
+      delayed_input_2 <= delayed_input_1;
+
+      // Perform multiplications and accumulation
+      accumulator = (input_signal * COEF_0) + (delayed_input_1 * COEF_1) + (delayed_input_2 * COEF_2);
+
+      // The output signal
+      output_signal <= accumulator;
+    end
+  end
+endmodule
