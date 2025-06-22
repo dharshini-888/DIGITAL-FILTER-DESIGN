@@ -1,40 +1,21 @@
 # DIGITAL-FILTER-DESIGN
-module fir_filter (
-  input clk,
-  input reset,
-  input [7:0] input_signal,
-  output reg [11:0] output_signal
-);
 
-  // Filter coefficients
-  parameter COEF_0 = 8'b10100000; // 0.5
-  parameter COEF_1 = 8'b01010000; // 0.25
-  parameter COEF_2 = 8'b00100000; // 0.125
+company:CODTECH IT SOLUTIONS
 
-  // Delay registers for input samples
-  reg [7:0] delayed_input_1;
-  reg [7:0] delayed_input_2;
+name:Dharshini
 
-  // Accumulator for summing products
-  reg [11:0] accumulator;
+Intern id:CTO4DF2111
 
-  always @(posedge clk) begin
-    if (reset) begin
-      output_signal <= 0;
-      delayed_input_1 <= 0;
-      delayed_input_2 <= 0;
-      accumulator <= 0;
-    end else begin
+Domain:VLSI
 
-      // Delay the input signal
-      delayed_input_1 <= input_signal;
-      delayed_input_2 <= delayed_input_1;
+DURATION:4 WEEKS
 
-      // Perform multiplications and accumulation
-      accumulator = (input_signal * COEF_0) + (delayed_input_1 * COEF_1) + (delayed_input_2 * COEF_2);
+Mentor:NEELA SANTOSH
 
-      // The output signal
-      output_signal <= accumulator;
-    end
-  end
-endmodule
+DESCRIPTION ABOUT DIGITAL  FILTER DESIGN:
+
+Digital filter design involves creating algorithms or hardware implementations to process discrete-time signals, attenuating unwanted frequencies while preserving desired ones. It is critical in applications like audio processing, communications, and image processing. 
+
+It ensures accurate signal processing while meeting constraints on power, speed, and resource usage.
+
+OUTPUT:data_out = 8'h56
